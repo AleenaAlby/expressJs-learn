@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Basic User Information</title>
+  </head>
+  <body>
+      <h2>Get Method</h2>
+      <form action="http://localhost:3000/user" method="GET">
+            First Name: <input type="text" name="first_name"> <br>
+            Last Name: <input type="text" name="last_name"> <br>
+               Gender: <select name="gender">
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select> 
+                  <input type="submit" value="submit">        
+      </form>
+
+      <h2>Post method</h2>
+
+      <form action="http://localhost:3000/users" method="POST">
+        First Name: <input type="text" name="first_name"> <br>
+        Last Name: <input type="text" name="last_name"> <br>
+           Gender: <select name="gender">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select> 
+              <input type="submit" value="submit">        
+  </form>
+  </body>
+</html>
+
+<!-- The URL http://localhost:8888/user in the action tag means that the data will transfer to the page, localhost:8888 -->
