@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser') //body-parser extracts the entire body portion of an incoming request stream and exposes it on req.body.
 //body parser will help us handle POST requests
+const { body, validationResult } = require('express-validator');
 const app = express()
 
 // parse application/json
@@ -34,11 +35,21 @@ app.get('/user', (req,res)=>{
 })
 
 //post method to handle post request from index.html
-app.post('/users', (req,res)=>{
+app.post('/users', 
+body('email').isEmail(),
+// password must be at least 5 chars long
+body('password').isLength({ min: 5 }),
+(req,res)=>{
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     response = {
         first_name : req.body.first_name,
-        last_name : req.body.last_name,
-        gender : req.body.gender
+        email : req.body.email,
+        gender : req.body.gender,
+        password : req.body.password
     }
     console.log(response)
     res.end(JSON.stringify(response))
